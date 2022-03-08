@@ -5,6 +5,7 @@ using namespace std;
 char squares[3][3] = {{' ',' ',' '},{' ',' ',' '},{' ',' ',' '}}; //where moves stored 
 
 void makeBoard(){
+
     cout << "\n"; 
     cout << "          " << " " << squares[0][0] << " | " << squares[0][1] << " | " << squares[0][2] << "\n"; 
     cout << "          " << "-----------" << "\n";
@@ -16,9 +17,12 @@ void makeBoard(){
 }
 
 bool checkWinner(int player){
+
     int r1, r2, r3, c1, c2, c3; 
     int winList[8][3] ={{0,3,6},{1,4,7},{2,5,8},{0,1,2},{3,4,5},{6,7,8},{0,4,8},{2,4,6}};
+
     for(int i = 0; i < 8; i++){
+
         int j = 0;
         r1 = (winList[i][j])/3;
         c1 = (winList[i][j])%3; 
@@ -26,26 +30,28 @@ bool checkWinner(int player){
         c2 = (winList[i][j+1])%3;
         r3 = (winList[i][j+2])/3;
         c3 = (winList[i][j+2])%3;
+
         if(squares[r1][c1] != ' '){
+
             if(squares[r1][c1] == squares[r2][c2] && squares[r1][c1] == squares[r3][c3] && squares[r3][c3] == squares[r2][c2]){
             cout <<"Player " << player << " wins!"  << endl;
             return true; 
             }
-        }
-        
-        
+        }  
     }
 
     return false;
 
 }
 
-void runGame(){
-    
+void runGame(){  
+
     bool gameOver = false; 
     int p1Move, p2Move, count, rowNum, colNum; 
     count = 0;  
+
     while (count < 9){
+
         cout << "Player one please enter your move: " ; 
         cin >> p1Move; 
         rowNum = p1Move/3; 
@@ -64,16 +70,12 @@ void runGame(){
         makeBoard(); 
         gameOver = checkWinner(2); 
         if(gameOver == true ){ break; }
-        count++; 
-        
-
+        count++;     
     }
-
 }
 
-
-
 int main(){
+    
     makeBoard(); 
     runGame();
     return 0; 
